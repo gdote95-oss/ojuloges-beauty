@@ -1,0 +1,63 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+:root {
+  --radius: 1rem;
+  --background: oklch(0.97 0.012 80);
+  --foreground: oklch(0.16 0.025 25);
+  --card: oklch(0.99 0.008 80);
+  --card-foreground: oklch(0.16 0.025 25);
+  --primary: oklch(0.16 0.03 20);
+  --primary-foreground: oklch(0.97 0.012 80);
+  --secondary: oklch(0.82 0.10 80);
+  --secondary-foreground: oklch(0.16 0.03 20);
+  --muted: oklch(0.93 0.015 70);
+  --muted-foreground: oklch(0.42 0.025 25);
+  --accent: oklch(0.80 0.12 82);
+  --accent-foreground: oklch(0.16 0.03 20);
+  --border: oklch(0.88 0.018 70);
+  --ring: oklch(0.80 0.12 82);
+  --gold: oklch(0.84 0.14 85);
+  --gold-deep: oklch(0.68 0.13 70);
+  --gradient-gold: linear-gradient(135deg, oklch(0.86 0.13 88) 0%, oklch(0.74 0.14 75) 50%, oklch(0.62 0.12 60) 100%);
+  --hero-gradient: radial-gradient(ellipse at 80% 10%, oklch(0.30 0.08 30) 0%, oklch(0.16 0.035 22) 55%, oklch(0.10 0.02 20) 100%);
+  --shadow-elegant: 0 30px 80px -30px oklch(0.16 0.03 25 / 0.55);
+  --shadow-luxe: 0 1px 0 oklch(1 0 0 / 0.6) inset, 0 30px 60px -25px oklch(0.16 0.03 25 / 0.35);
+}
+
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+  }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 400; }
+}
