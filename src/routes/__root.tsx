@@ -6,11 +6,13 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { ThemeProvider } from "@/components/theme-toggle";
 
 function NotFoundComponent() {
   return (
@@ -34,7 +36,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -77,20 +79,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
+      { title: "Ojuloge's Beauty" },
       { name: "description", content: "Ojuloge's Radiance offers professional makeup, Gele styling, and microblading services for a radiant, confident you." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
+      { name: "author", content: "Ojuloge's Beauty" },
+      { property: "og:title", content: "Ojuloge's Beauty" },
       { property: "og:description", content: "Ojuloge's Radiance offers professional makeup, Gele styling, and microblading services for a radiant, confident you." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lovable App" },
+      { name: "twitter:title", content: "Ojuloge's Beauty" },
       { name: "twitter:description", content: "Ojuloge's Radiance offers professional makeup, Gele styling, and microblading services for a radiant, confident you." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d2c02daa-a5d6-4828-a968-6a1f1ac7a138/id-preview-7afde954--f7c27aca-04fd-4f1e-b656-706d58103edb.lovable.app-1781833828892.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d2c02daa-a5d6-4828-a968-6a1f1ac7a138/id-preview-7afde954--f7c27aca-04fd-4f1e-b656-706d58103edb.lovable.app-1781833828892.png" },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,
@@ -123,7 +128,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <ThemeProvider><Outlet /></ThemeProvider>
     </QueryClientProvider>
   );
 }

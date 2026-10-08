@@ -1,6 +1,6 @@
 # Ojuloge's Beauty
 
-Marketing site for Ojuloge's Beauty — bridal makeup, Gele, microblading & locs, Burnley + Manchester.
+Marketing site for Ojuloge's Beauty — bridal makeup, Gele, microblading and locs in Burnley town centre.
 
 Built with **TanStack Start** (React + Vite) and **Lovable Cloud** (Supabase) for the contact-form inbox, admin dashboard, and click analytics.
 

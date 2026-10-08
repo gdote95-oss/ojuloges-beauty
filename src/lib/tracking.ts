@@ -5,7 +5,9 @@ export type TrackKind =
   | "call_click"
   | "booksy_click"
   | "instagram_click"
-  | "form_submit";
+  | "form_submit"
+  | "page_view"
+  | "share_click";
 
 /**
  * Fire-and-forget analytics. Safe to call from any click handler.

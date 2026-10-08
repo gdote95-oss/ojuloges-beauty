@@ -6,6 +6,13 @@ export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({
     meta: [
       { title: "Owner dashboard — Ojuloge's Beauty" },
+      { name: "description", content: "Private visitor statistics and activity for the Ojuloge's Beauty owner." },
+      { property: "og:title", content: "Owner dashboard — Ojuloge's Beauty" },
+      { property: "og:description", content: "Private visitor statistics and activity for Ojuloge's Beauty." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "Owner dashboard — Ojuloge's Beauty" },
+      { name: "twitter:description", content: "Private visitor statistics and activity for Ojuloge's Beauty." },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -26,6 +33,32 @@ type Message = {
 };
 
 type Counts = Record<string, number>;
+type Ev = { kind: string; created_at: string; path: string | null; referrer: string | null };
+
+const KIND_LABEL: Record<string, string> = {
+  page_view: "Visited the site",
+  booksy_click: "Opened Booksy",
+  whatsapp_click: "Tapped WhatsApp",
+  call_click: "Tapped Call",
+  instagram_click: "Opened Instagram",
+  share_click: "Shared the site",
+  form_submit: "Sent a form",
+};
+
+function source(ref: string | null) {
+  if (!ref) return "Direct / app";
+  try {
+    const h = new URL(ref).hostname.replace(/^www\./, "");
+    if (h.includes("google")) return "Google";
+    if (h.includes("instagram")) return "Instagram";
+    if (h.includes("facebook")) return "Facebook";
+    if (h.includes("tiktok")) return "TikTok";
+    if (h.includes("booksy")) return "Booksy";
+    return h;
+  } catch {
+    return "Other";
+  }
+}
 
 function AdminPage() {
   const navigate = useNavigate();
@@ -34,6 +67,8 @@ function AdminPage() {
   const [counts, setCounts] = useState<Counts>({});
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState<string | null>(null);
+  const [events, setEvents] = useState<Ev[]>([]);
+  const [days, setDays] = useState<7 | 30>(7);
 
   useEffect(() => {
     (async () => {
@@ -54,18 +89,25 @@ function AdminPage() {
         supabase.from("contact_messages").select("*").order("created_at", { ascending: false }).limit(200),
         supabase
           .from("interaction_events")
-          .select("kind, created_at")
-          .gte("created_at", new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()),
+          .select("kind, created_at, path, referrer")
+          .gte("created_at", new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString())
+          .order("created_at", { ascending: false })
+          .limit(5000),
       ]);
       setMessages((msgs ?? []) as Message[]);
-      const c: Counts = {};
-      (events ?? []).forEach((e: { kind: string }) => {
-        c[e.kind] = (c[e.kind] ?? 0) + 1;
-      });
-      setCounts(c);
+      setEvents((events ?? []) as Ev[]);
       setLoading(false);
     })();
   }, []);
+
+  useEffect(() => {
+    const cutoff = Date.now() - days * 24 * 60 * 60 * 1000;
+    const c: Counts = {};
+    events.forEach((e) => {
+      if (new Date(e.created_at).getTime() >= cutoff) c[e.kind] = (c[e.kind] ?? 0) + 1;
+    });
+    setCounts(c);
+  }, [events, days]);
 
   async function setStatus(id: string, status: string) {
     await supabase.from("contact_messages").update({ status }).eq("id", id);
@@ -105,14 +147,40 @@ function AdminPage() {
 
   const newCount = messages.filter((m) => m.status === "new").length;
 
+  const cutoff = Date.now() - days * 24 * 60 * 60 * 1000;
+  const inRange = events.filter((e) => new Date(e.created_at).getTime() >= cutoff);
+  const views = inRange.filter((e) => e.kind === "page_view");
+  const sources: Counts = {};
+  views.forEach((e) => {
+    const s = source(e.referrer);
+    sources[s] = (sources[s] ?? 0) + 1;
+  });
+  const sourceList = Object.entries(sources).sort((a, b) => b[1] - a[1]);
+  const daily: { d: string; n: number }[] = [];
+  for (let i = days - 1; i >= 0; i--) {
+    const d = new Date(Date.now() - i * 86400000).toISOString().slice(0, 10);
+    daily.push({ d, n: views.filter((e) => e.created_at.slice(0, 10) === d).length });
+  }
+  const maxDay = Math.max(1, ...daily.map((x) => x.n));
+  const leads = (counts.booksy_click ?? 0) + (counts.whatsapp_click ?? 0) + (counts.call_click ?? 0);
+
   const kpis = [
-    { label: "New messages", value: newCount },
-    { label: "WhatsApp taps · 7d", value: counts.whatsapp_click ?? 0 },
-    { label: "Call taps · 7d", value: counts.call_click ?? 0 },
-    { label: "Booksy clicks · 7d", value: counts.booksy_click ?? 0 },
-    { label: "Instagram clicks · 7d", value: counts.instagram_click ?? 0 },
-    { label: "Form sends · 7d", value: counts.form_submit ?? 0 },
+    { label: "Visits", value: counts.page_view ?? 0 },
+    { label: "Booksy opens", value: counts.booksy_click ?? 0 },
+    { label: "WhatsApp taps", value: counts.whatsapp_click ?? 0 },
+    { label: "Call taps", value: counts.call_click ?? 0 },
+    { label: "Instagram opens", value: counts.instagram_click ?? 0 },
+    { label: "Shares", value: counts.share_click ?? 0 },
   ];
+
+  function exportCsv() {
+    const rows = [["time", "action", "source", "page"], ...inRange.map((e) => [e.created_at, KIND_LABEL[e.kind] ?? e.kind, source(e.referrer), e.path ?? ""])];
+    const blob = new Blob([rows.map((r) => r.map((c) => `"${String(c).replace(/"/g, '""')}"`).join(",")).join("\n")], { type: "text/csv" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `activity-${days}d.csv`;
+    a.click();
+  }
 
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -123,7 +191,7 @@ function AdminPage() {
             <h1 className="font-display text-xl">Ojuloge's Beauty</h1>
           </div>
           <div className="flex items-center gap-3 text-xs">
-            <span className="text-primary-foreground/60">{email}</span>
+            <span className="hidden text-primary-foreground/60 sm:inline">{email}</span>
             <button onClick={signOut} className="border border-primary-foreground/20 px-3 py-1.5 uppercase tracking-widest hover:bg-primary-foreground hover:text-primary">
               Sign out
             </button>
@@ -131,14 +199,92 @@ function AdminPage() {
         </div>
       </header>
 
-      <section className="mx-auto max-w-6xl px-6 py-8">
+      <section className="mx-auto max-w-6xl px-6 pt-8">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex gap-2 text-xs uppercase tracking-widest">
+            {([7, 30] as const).map((d) => (
+              <button key={d} onClick={() => setDays(d)} className={`border px-4 py-2 ${days === d ? "border-foreground bg-foreground text-background" : "border-foreground/20"}`}>
+                Last {d} days
+              </button>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-2 text-xs uppercase tracking-widest">
+            <a href="https://ojulogemakeupprofessional.booksy.com/a/" target="_blank" rel="noopener noreferrer" className="border border-foreground/20 px-3 py-2 hover:bg-foreground hover:text-background">Booksy</a>
+            <a href="https://www.instagram.com/ojuloge_makeuppro/" target="_blank" rel="noopener noreferrer" className="border border-foreground/20 px-3 py-2 hover:bg-foreground hover:text-background">Instagram</a>
+            <a href="/" target="_blank" rel="noopener noreferrer" className="border border-foreground/20 px-3 py-2 hover:bg-foreground hover:text-background">View site</a>
+            <button onClick={exportCsv} className="border border-foreground/20 px-3 py-2 hover:bg-foreground hover:text-background">Download log</button>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-6">
+        <div className="mb-3 border border-accent p-4">
+          <p className="text-[10px] uppercase tracking-widest text-foreground/60">Booking interest · last {days} days</p>
+          <p className="mt-1 font-display text-3xl">{leads} <span className="text-sm text-foreground/60">people tapped Booksy, WhatsApp or Call · {newCount} new messages</span></p>
+        </div>
         <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-6">
           {kpis.map((k) => (
             <div key={k.label} className="border border-foreground/10 p-4">
-              <p className="text-[10px] uppercase tracking-widest text-foreground/50">{k.label}</p>
+              <p className="text-[10px] uppercase tracking-widest text-foreground/60">{k.label}</p>
               <p className="mt-2 font-display text-3xl">{k.value}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto grid max-w-6xl gap-6 px-6 pb-8 lg:grid-cols-2">
+        <div className="border border-foreground/10 p-5">
+          <h2 className="font-display text-xl">Visits per day</h2>
+          <div className="mt-4 flex h-32 items-end gap-1">
+            {daily.map((x) => (
+              <div key={x.d} title={`${x.d}: ${x.n}`} className="flex-1 bg-accent" style={{ height: `${Math.max(3, (x.n / maxDay) * 100)}%` }} />
+            ))}
+          </div>
+        </div>
+        <div className="border border-foreground/10 p-5">
+          <h2 className="font-display text-xl">Where visitors came from</h2>
+          {sourceList.length === 0 ? (
+            <p className="mt-3 text-sm text-foreground/60">No visits yet.</p>
+          ) : (
+            <ul className="mt-3 space-y-2 text-sm">
+              {sourceList.map(([s, n]) => (
+                <li key={s} className="flex justify-between border-b border-foreground/10 pb-1"><span>{s}</span><span className="font-semibold">{n}</span></li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-8">
+        <h2 className="mb-3 font-display text-2xl">Activity log</h2>
+        <div className="max-h-96 overflow-auto border border-foreground/10">
+          <table className="w-full text-left text-sm">
+            <thead className="sticky top-0 bg-muted text-[10px] uppercase tracking-widest text-foreground/60">
+              <tr><th className="p-3">When</th><th className="p-3">Action</th><th className="p-3">Source</th></tr>
+            </thead>
+            <tbody>
+              {inRange.slice(0, 200).map((e, i) => (
+                <tr key={i} className="border-t border-foreground/10">
+                  <td className="p-3 text-foreground/70">{new Date(e.created_at).toLocaleString("en-GB")}</td>
+                  <td className="p-3">{KIND_LABEL[e.kind] ?? e.kind}</td>
+                  <td className="p-3 text-foreground/70">{source(e.referrer)}</td>
+                </tr>
+              ))}
+              {inRange.length === 0 && <tr><td colSpan={3} className="p-3 text-foreground/60">No activity yet.</td></tr>}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-8">
+        <div className="border border-foreground/10 bg-muted p-5 text-sm leading-relaxed">
+          <h2 className="font-display text-xl">Get seen for free</h2>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-foreground/80">
+            <li>Create a free Google Business Profile (business.google.com) for Burnley town centre and add the website link — this puts you on Google Maps.</li>
+            <li>Put the website link in your Instagram bio, WhatsApp Business profile and Booksy profile.</li>
+            <li>Ask happy clients for a Google review after each appointment.</li>
+            <li>Post the link to Burnley local Facebook groups and wedding groups.</li>
+          </ul>
         </div>
       </section>
 

@@ -7,6 +7,13 @@ export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
       { title: "Owner sign in — Ojuloge's Beauty" },
+      { name: "description", content: "Private owner sign-in for Ojuloge's Beauty in Burnley town centre." },
+      { property: "og:title", content: "Owner sign in — Ojuloge's Beauty" },
+      { property: "og:description", content: "Secure access to the Ojuloge's Beauty owner dashboard." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "Owner sign in — Ojuloge's Beauty" },
+      { name: "twitter:description", content: "Secure access to the Ojuloge's Beauty owner dashboard." },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
