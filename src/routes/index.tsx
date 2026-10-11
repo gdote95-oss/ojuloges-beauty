@@ -18,7 +18,7 @@ const bridalMorning = portfolioAsset("7582");
 const occasionMakeup = portfolioAsset("7583");
 const traditionalWedding = portfolioAsset("7584");
 const browDetail = portfolioAsset("7585");
-const blueGele = portfolioAsset("7586");
+const heroPhoto = portfolioAsset("7586");
 const browComparison = portfolioAsset("7587");
 const blueSequin = portfolioAsset("7588");
 const bridalRobe = portfolioAsset("7589");
@@ -243,7 +243,7 @@ function Index() {
       {/* Sticky top bar — always-visible book button */}
       <header className="sticky top-0 z-50 border-b border-primary-foreground/10 bg-primary/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-2 px-4 py-3 text-primary-foreground sm:gap-3 sm:px-5">
-          <a href="#top" className="min-w-0 truncate font-display text-[13px] tracking-wide sm:text-lg">
+          <a href="#top" className="min-w-0 truncate font-display text-xs tracking-wide sm:text-lg">
             Ojuloge <span className="italic text-accent">Makeup Professional</span>
           </a>
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
@@ -256,7 +256,7 @@ function Index() {
               className="group relative inline-flex items-center gap-1.5 rounded-full border-2 border-accent bg-accent/15 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-accent shadow-[0_0_0_3px_color-mix(in_oklab,var(--accent)_18%,transparent)] transition hover:bg-accent hover:text-primary sm:px-4 sm:text-xs sm:tracking-[0.18em]"
             >
               <Instagram className="h-3.5 w-3.5" />
-              <span className="hidden min-[380px]:inline">See My Work</span>
+              <span className="hidden min-[420px]:inline">See My Work</span>
               <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-accent animate-pulse" aria-hidden="true" />
             </a>
             <a
@@ -274,32 +274,29 @@ function Index() {
       {/* Hero */}
       <section id="top" className="relative mx-auto flex min-h-[88vh] max-w-5xl flex-col justify-end overflow-hidden px-5 pb-16 pt-16 text-primary-foreground sm:px-12 sm:pb-20 sm:pt-20 lg:px-16">
         <div className="absolute inset-0" style={{ background: "var(--hero-gradient)" }} />
-        <div className="absolute inset-x-5 top-6 h-px bg-accent/35 sm:inset-x-12 sm:top-8 lg:inset-x-16" />
-        <div className="absolute bottom-0 right-0 top-0 hidden w-[44%] border-l border-accent/20 bg-luxe/35 lg:block" />
+        {/* Opening photograph — the first thing visitors see */}
         <img
-          src={makeupTools}
-          alt="Professional makeup brushes and powder compact"
-          width={1024}
-          height={1024}
-          className="pointer-events-none absolute -bottom-10 -right-16 hidden w-[52%] rotate-[-5deg] drop-shadow-2xl lg:block"
-        />
-        <img
-          src={makeupTools}
-          alt=""
-          aria-hidden="true"
-          width={1024}
-          height={1024}
-          className="pointer-events-none absolute -right-24 top-32 w-64 rotate-[-12deg] opacity-[0.09] lg:hidden"
+          src={heroPhoto.url}
+          alt="Bride wearing a sculpted navy Gele with statement jewellery and bridal makeup"
+          width={886}
+          height={1235}
+          fetchPriority="high"
+          className="absolute inset-x-0 top-0 h-[max(40vh,320px)] w-full object-cover object-[50%_30%] lg:inset-y-0 lg:left-auto lg:right-0 lg:h-full lg:w-[46%] lg:border-l lg:border-accent/25 lg:object-[50%_8%]"
         />
         <div
-          className="pointer-events-none absolute right-4 top-16 select-none font-display text-[180px] italic leading-none text-accent/10 sm:text-[260px] lg:right-[34%]"
+          className="pointer-events-none absolute inset-x-0 top-0 h-[max(40vh,320px)] lg:hidden"
           aria-hidden
-        >
-          O
-        </div>
+          style={{ background: "linear-gradient(to bottom, transparent 88%, color-mix(in oklab, var(--primary) 60%, transparent) 96%, var(--primary) 100%)" }}
+        />
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 hidden w-[46%] lg:block"
+          aria-hidden
+          style={{ background: "linear-gradient(to right, color-mix(in oklab, var(--primary) 45%, transparent) 0%, transparent 45%, color-mix(in oklab, var(--primary) 22%, transparent) 100%)" }}
+        />
+        <div className="absolute hidden h-px bg-accent/35 lg:left-16 lg:right-[46%] lg:top-8 lg:block" />
         <div className="pointer-events-none absolute left-1/2 top-24 h-px w-24 -translate-x-1/2 bg-accent/40 sm:top-28" aria-hidden />
 
-        <div className="relative z-10 max-w-xl space-y-6 sm:space-y-8">
+        <div className="relative z-10 mt-[max(40vh,320px)] max-w-xl space-y-6 sm:space-y-8 lg:mt-0 lg:max-w-[500px]">
           <p className="font-display text-sm font-medium uppercase tracking-[0.22em] text-accent drop-shadow-[0_0_18px_color-mix(in_oklab,var(--accent)_45%,transparent)] sm:text-lg sm:tracking-[0.35em]">
             Bridal Makeup · Gele Styling · Microblading
           </p>
@@ -476,7 +473,6 @@ function Index() {
           <div className="mt-10 grid items-start gap-8 sm:mt-12 md:grid-cols-3 md:gap-6">
             {[
               { title: "Bridal moments", photos: [
-                { asset: blueGele, width: 886, height: 1235, caption: "Sculpted Gele & statement makeup", alt: "Detailed navy Gele styling with defined eye makeup and a soft pink lip" },
                 { asset: traditionalWedding, width: 886, height: 1167, caption: "Traditional wedding elegance", alt: "Wedding couple in coordinated traditional outfits with navy Gele and bridal makeup" },
                 { asset: bridalMorning, width: 886, height: 1531, caption: "The bridal morning", alt: "Bride in a white robe with finished wedding makeup, surrounded by her bridal party" },
                 { asset: blushWedding, width: 886, height: 1322, caption: "", alt: "Couple in blush pink wedding outfits beneath a floral arch, bride with soft radiant makeup" },

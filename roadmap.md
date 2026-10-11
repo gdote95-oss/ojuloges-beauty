@@ -14,3 +14,5 @@
 - [x] Remove unsupported location, travel, package, social-count and testimonial claims.
 - [x] Remove black borders from nine uploaded photos and display each once in a full-photo portfolio.
 - [ ] Connect the owner's Google and social accounts and publish profile updates (requires owner authorisation).
+- [x] Transcribe the owner's WhatsApp voice note and apply the change it asks for.
+- [x] Make the first portfolio photograph the first thing visitors see, on phones and desktops.
