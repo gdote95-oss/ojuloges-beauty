@@ -21,7 +21,7 @@ export function GalleryViewer({ selection, onChange }: {
           if (event.key === "ArrowRight") { event.preventDefault(); move(1); }
           if (event.key === "ArrowLeft") { event.preventDefault(); move(-1); }
         }}>
-        <DialogTitle className="sr-only">Ojuloge's Beauty portfolio</DialogTitle>
+        <DialogTitle className="sr-only">Ojuloge Makeup Professional portfolio</DialogTitle>
         <DialogDescription className="sr-only">{photo?.alt}</DialogDescription>
         {photo && <img src={photo.asset.url} alt={photo.alt} width={photo.width} height={photo.height}
           className="mx-auto block h-auto max-h-[72dvh] w-auto max-w-full object-contain" />}

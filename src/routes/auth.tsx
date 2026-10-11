@@ -6,14 +6,14 @@ import { lovable } from "@/integrations/lovable/index";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Owner sign in — Ojuloge's Beauty" },
-      { name: "description", content: "Private owner sign-in for Ojuloge's Beauty in Burnley town centre." },
-      { property: "og:title", content: "Owner sign in — Ojuloge's Beauty" },
-      { property: "og:description", content: "Secure access to the Ojuloge's Beauty owner dashboard." },
+      { title: "Owner sign in — Ojuloge Makeup Professional" },
+      { name: "description", content: "Private owner sign-in for Ojuloge Makeup Professional in Burnley town centre." },
+      { property: "og:title", content: "Owner sign in — Ojuloge Makeup Professional" },
+      { property: "og:description", content: "Secure access to the Ojuloge Makeup Professional owner dashboard." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: "Owner sign in — Ojuloge's Beauty" },
-      { name: "twitter:description", content: "Secure access to the Ojuloge's Beauty owner dashboard." },
+      { name: "twitter:title", content: "Owner sign in — Ojuloge Makeup Professional" },
+      { name: "twitter:description", content: "Secure access to the Ojuloge Makeup Professional owner dashboard." },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),

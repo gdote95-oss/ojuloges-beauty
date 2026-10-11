@@ -69,7 +69,7 @@ function whatsappFor(service: string) {
 const FAQS: { q: string; a: string }[] = [
   {
     q: "Where are you based?",
-    a: "Ojuloge's Beauty is based in Burnley town centre. Appointments are arranged in advance.",
+    a: "Ojuloge Makeup Professional is based in Burnley town centre. Appointments are arranged in advance.",
   },
   {
     q: "Do you do wedding makeup in Burnley?",
@@ -93,25 +93,25 @@ const FAQS: { q: string; a: string }[] = [
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Bridal Makeup Artist in Burnley Town Centre | Ojuloge's Beauty" },
+      { title: "Bridal Makeup Artist in Burnley Town Centre | Ojuloge Makeup Professional" },
       {
         name: "description",
         content:
-          "Ojuloge's Beauty offers professional bridal makeup, Gele styling, microblading and locs from Burnley town centre. View services and book through Booksy or WhatsApp.",
+          "Ojuloge Makeup Professional offers professional bridal makeup, Gele styling, microblading and locs from Burnley town centre. View services and book through Booksy or WhatsApp.",
       },
-      { name: "keywords", content: "bridal makeup artist Burnley town centre, wedding makeup Burnley, makeup artist Burnley, bridal makeup Burnley, MUA Burnley, Gele stylist Burnley, Gele artist Burnley, microblading Burnley, locs Burnley, Ojuloge makeup pro" },
+      { name: "keywords", content: "bridal makeup artist Burnley town centre, wedding makeup Burnley, makeup artist Burnley, bridal makeup Burnley, MUA Burnley, Gele stylist Burnley, Gele artist Burnley, microblading Burnley, locs Burnley, Ojuloge Makeup Professional" },
       { name: "robots", content: "index, follow, max-image-preview:large" },
-      { name: "author", content: "Ojuloge's Beauty" },
+      { name: "author", content: "Ojuloge Makeup Professional" },
       { name: "geo.region", content: "GB-LAN" },
       { name: "geo.placename", content: "Burnley town centre" },
-      { property: "og:title", content: "Bridal Makeup Artist in Burnley Town Centre | Ojuloge's Beauty" },
+      { property: "og:title", content: "Bridal Makeup Artist in Burnley Town Centre | Ojuloge Makeup Professional" },
       { property: "og:description", content: "Professional bridal makeup, Gele styling, microblading and locs in Burnley town centre." },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "en_GB" },
-      { property: "og:site_name", content: "Ojuloge's Beauty" },
+      { property: "og:site_name", content: "Ojuloge Makeup Professional" },
       { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Ojuloge's Beauty — Burnley Town Centre" },
+      { name: "twitter:title", content: "Ojuloge Makeup Professional — Burnley Town Centre" },
       { name: "twitter:description", content: "Professional bridal makeup, Gele styling and microblading in Burnley town centre." },
     ],
     links: [
@@ -130,7 +130,7 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "BeautySalon",
           "@id": "/#business",
-          name: "Ojuloge's Beauty",
+          name: "Ojuloge Makeup Professional",
           alternateName: "Ojuloge Makeup Pro",
           description:
             "Professional bridal makeup, Gele styling, microblading and locs by Ojuloge in Burnley town centre.",
@@ -207,7 +207,7 @@ function BookButton({
 async function sharePage() {
   trackEvent("share_click");
   const data = {
-    title: "Ojuloge's Beauty — Bridal Makeup Artist, Burnley",
+    title: "Ojuloge Makeup Professional — Bridal Makeup Artist, Burnley",
     text: "Bridal makeup, Gele styling and microblading in Burnley town centre.",
     url: "https://beauty-unfold-grace.lovable.app/",
   };
@@ -243,8 +243,8 @@ function Index() {
       {/* Sticky top bar — always-visible book button */}
       <header className="sticky top-0 z-50 border-b border-primary-foreground/10 bg-primary/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-2 px-4 py-3 text-primary-foreground sm:gap-3 sm:px-5">
-          <a href="#top" className="min-w-0 truncate font-display text-sm tracking-wide sm:text-lg">
-            Ojuloge's <span className="italic text-accent">Beauty</span>
+          <a href="#top" className="min-w-0 truncate font-display text-[13px] tracking-wide sm:text-lg">
+            Ojuloge <span className="italic text-accent">Makeup Professional</span>
           </a>
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <ThemeToggle />
@@ -390,7 +390,7 @@ function Index() {
 
           <div className="space-y-6 text-[15px] font-light leading-[1.8] text-foreground/90 sm:space-y-8 sm:text-base">
             <p>
-              Hello, I'm <span className="border-b border-accent/40 font-medium text-foreground">Ojuloge</span>, the founder and lead Makeup Artist behind Ojuloge's Beauty.
+              Hello, I'm <span className="border-b border-accent/40 font-medium text-foreground">Ojuloge</span>, the founder and lead Makeup Artist behind Ojuloge Makeup Professional.
             </p>
 
             <p>
@@ -398,11 +398,11 @@ function Index() {
             </p>
 
             <p>
-              At Ojuloge's Beauty, we specialise in luxury makeup artistry, flawless Gele styling, and precision microblading services. Our signature approach combines elegance, creativity, and attention to detail to create timeless looks that complement each client's unique beauty. Whether you're preparing for your wedding day, a special event, a photoshoot, or any memorable occasion, every service is tailored to suit your personal style and vision.
+              At Ojuloge Makeup Professional, we specialise in luxury makeup artistry, flawless Gele styling, and precision microblading services. Our signature approach combines elegance, creativity, and attention to detail to create timeless looks that complement each client's unique beauty. Whether you're preparing for your wedding day, a special event, a photoshoot, or any memorable occasion, every service is tailored to suit your personal style and vision.
             </p>
 
             <p>
-              Based in Burnley town centre, UK, Ojuloge's Beauty has built a reputation for delivering clean, soft, sophisticated, and long-lasting looks, alongside beautifully crafted Gele styles that honour the rich cultural heritage of the Yoruba tradition. We take pride in creating an experience that is both professional and personal, ensuring every client feels relaxed, valued, and confident from the moment they arrive.
+              Based in Burnley town centre, UK, Ojuloge Makeup Professional has built a reputation for delivering clean, soft, sophisticated, and long-lasting looks, alongside beautifully crafted Gele styles that honour the rich cultural heritage of the Yoruba tradition. We take pride in creating an experience that is both professional and personal, ensuring every client feels relaxed, valued, and confident from the moment they arrive.
             </p>
 
             <blockquote className="my-10 border-l-2 border-accent py-2 pl-6 font-display text-xl italic text-foreground/85">
@@ -410,7 +410,7 @@ function Index() {
             </blockquote>
 
             <p>
-              More than makeup, Ojuloge's Beauty is about transformation, confidence, and self-expression. Every brushstroke, every Gele fold, and every detail is carefully designed to enhance your beauty while allowing your true self to shine through.
+              More than makeup, Ojuloge Makeup Professional is about transformation, confidence, and self-expression. Every brushstroke, every Gele fold, and every detail is carefully designed to enhance your beauty while allowing your true self to shine through.
             </p>
 
             <p>
@@ -633,7 +633,7 @@ function Index() {
             </div>
             <div className="flex flex-col justify-center gap-3 text-sm text-foreground/75">
               <p className="leading-relaxed">
-                Ojuloge's Beauty is based in Burnley town centre. All appointments must be booked in advance.
+                Ojuloge Makeup Professional is based in Burnley town centre. All appointments must be booked in advance.
               </p>
               <p className="leading-relaxed text-foreground/70">
                 Please note: deposits are non-refundable.
@@ -732,7 +732,7 @@ function Index() {
           Share with a friend
         </Button>
         <p className="text-xs font-medium uppercase tracking-widest">
-          © {new Date().getFullYear()} Ojuloge's Beauty · Bridal Makeup · Gele · Microblading
+          © {new Date().getFullYear()} Ojuloge Makeup Professional · Bridal Makeup · Gele · Microblading
         </p>
       </footer>
 

@@ -5,14 +5,14 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({
     meta: [
-      { title: "Owner dashboard — Ojuloge's Beauty" },
-      { name: "description", content: "Private visitor statistics and activity for the Ojuloge's Beauty owner." },
-      { property: "og:title", content: "Owner dashboard — Ojuloge's Beauty" },
-      { property: "og:description", content: "Private visitor statistics and activity for Ojuloge's Beauty." },
+      { title: "Owner dashboard — Ojuloge Makeup Professional" },
+      { name: "description", content: "Private visitor statistics and activity for the Ojuloge Makeup Professional owner." },
+      { property: "og:title", content: "Owner dashboard — Ojuloge Makeup Professional" },
+      { property: "og:description", content: "Private visitor statistics and activity for Ojuloge Makeup Professional." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: "Owner dashboard — Ojuloge's Beauty" },
-      { name: "twitter:description", content: "Private visitor statistics and activity for Ojuloge's Beauty." },
+      { name: "twitter:title", content: "Owner dashboard — Ojuloge Makeup Professional" },
+      { name: "twitter:description", content: "Private visitor statistics and activity for Ojuloge Makeup Professional." },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -188,7 +188,7 @@ function AdminPage() {
         <div className="mx-auto flex max-w-6xl items-center justify-between">
           <div>
             <p className="text-[10px] uppercase tracking-[0.3em] text-primary-foreground/50">Owner dashboard</p>
-            <h1 className="font-display text-xl">Ojuloge's Beauty</h1>
+            <h1 className="font-display text-xl">Ojuloge Makeup Professional</h1>
           </div>
           <div className="flex items-center gap-3 text-xs">
             <span className="hidden text-primary-foreground/60 sm:inline">{email}</span>
