@@ -5,7 +5,7 @@
 
 - [x] Refresh the makeup-inspired palette with readable rose, blush, plum and clean white surfaces.
 - [x] Send the refreshed colour styling to the GitHub repository used for hosting.
-- [ ] Verify Netlify deployment and automatic updates (requires Netlify site access; no deployment connection was returned by GitHub).
+- [x] Verify Netlify deployment and automatic updates — pushed commits rebuild and publish the live site.
 
 - [x] Create and apply a fresh custom luxury colour direction without presenting options.
 - [x] Replace the current background with a cleaner, brighter premium treatment.
