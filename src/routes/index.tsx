@@ -109,13 +109,16 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "en_GB" },
       { property: "og:site_name", content: "Ojuloge Makeup Professional" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://ojulogemakeppro.co.uk/" },
+      { property: "og:image", content: "https://ojulogemakeppro.co.uk/og-image.jpg" },
+      { property: "og:image:alt", content: "Ojuloge Makeup Professional — bridal makeup, Gele styling and beauty in Burnley" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://ojulogemakeppro.co.uk/og-image.jpg" },
       { name: "twitter:title", content: "Ojuloge Makeup Professional — Burnley Town Centre" },
       { name: "twitter:description", content: "Professional bridal makeup, Gele styling and microblading in Burnley town centre." },
     ],
     links: [
-      { rel: "canonical", href: "/" },
+      { rel: "canonical", href: "https://ojulogemakeppro.co.uk/" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
       {
@@ -129,21 +132,18 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BeautySalon",
-          "@id": "/#business",
+          "@id": "https://ojulogemakeppro.co.uk/#business",
           name: "Ojuloge Makeup Professional",
           alternateName: "Ojuloge Makeup Pro",
           description:
             "Professional bridal makeup, Gele styling, microblading and locs by Ojuloge in Burnley town centre.",
           areaServed: "Burnley town centre",
-          image: "/og-image.jpg",
-          url: "/",
+          image: "https://ojulogemakeppro.co.uk/og-image.jpg",
+          url: "https://ojulogemakeppro.co.uk/",
           telephone: PHONE_DISPLAY,
           sameAs: [BOOKSY_URL, INSTAGRAM_URL],
           priceRange: "££",
           address: { "@type": "PostalAddress", addressLocality: "Burnley", addressRegion: "Lancashire", addressCountry: "GB" },
-          openingHoursSpecification: [
-            { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], description: "By appointment only" },
-          ],
           makesOffer: [
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Bridal Makeup" } },
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Bridal Gele" } },
