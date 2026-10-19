@@ -301,11 +301,11 @@ function Index() {
             Bridal Makeup · Gele Styling · Microblading
           </p>
           <h1 className="font-display text-4xl leading-[1.05] sm:text-6xl sm:leading-[1.02]">
-            Soft glam.<br />
-            <span className="italic font-light text-accent">Bridal royalty.</span>
+            Bridal makeup in Burnley,<br />
+            <span className="italic font-light text-accent">made personal.</span>
           </h1>
           <p className="max-w-[380px] text-base font-light leading-relaxed text-primary-foreground/90">
-            I'm <span className="text-accent">Ojuloge</span>, a professional makeup artist, Gele stylist and microblading artist based in Burnley town centre. Every appointment is approached with care, skill and close attention to detail.
+            I'm <span className="text-accent">Ojuloge</span>. I create soft, polished makeup and beautifully styled Gele for weddings and special occasions. Every look is tailored to you, with microblading and loc styling also available by appointment in Burnley town centre.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <BookButton className="w-full sm:w-auto">Book on Booksy</BookButton>
