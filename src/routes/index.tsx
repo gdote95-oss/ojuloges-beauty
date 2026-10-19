@@ -142,7 +142,6 @@ export const Route = createFileRoute("/")({
           url: "https://ojulogemakeppro.co.uk/",
           telephone: PHONE_DISPLAY,
           sameAs: [BOOKSY_URL, INSTAGRAM_URL],
-          priceRange: "££",
           address: { "@type": "PostalAddress", addressLocality: "Burnley", addressRegion: "Lancashire", addressCountry: "GB" },
           makesOffer: [
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Bridal Makeup" } },
