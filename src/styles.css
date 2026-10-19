@@ -167,3 +167,8 @@ header, #top, footer {
   --primary: oklch(0.29 0.065 340);
   --luxe: oklch(0.245 0.045 340);
 }
+
+
+/* Subtle makeup-brush detail, layered onto the plum hero background. */
+#top > div:first-child::after { content: ""; position: absolute; inset: max(40vh, 320px) 0 0; pointer-events: none; opacity: 0.13; background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgMzYwIiBmaWxsPSJub25lIiBzdHJva2U9IiNlN2NmYWEiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNNDAgMzIwIDE2MCAxNTBtLTEwIDUgMjAtMjUgMTUgMTItMjAgMjVtLTE1LTEyYy01LTI1IDE1LTU1IDM1LTc1IDIwIDI1IDI4IDQ4IDAgNzhNMTIwIDMzMCAyMTUgMTcwbS04IDUgMTYtMjIgMTQgMTAtMTUgMjJtLTEwLTExYy00LTIwIDEyLTQyIDMwLTU5IDE3IDE4IDIwIDQwIDAgNjRNMjAwIDMzMCAyNjAgMjEwbS01IDggMTItMTggMTEgOC0xMSAxOG0tMTEtMTBjMC0xNiAxMC0zMiAyNC00NSAxNCAxNSAxNiAzMCAwIDQ4Ii8+PC9zdmc+") no-repeat right 5% bottom 6% / min(72vw, 360px) auto; }
+@media (min-width: 1024px) { #top > div:first-child::after { inset: 0 46% 0 0; background-position: right 5% bottom 8%; background-size: min(70%, 340px); } }
