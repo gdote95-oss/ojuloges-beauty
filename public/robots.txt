@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /auth
 
-Sitemap: https://beauty-unfold-grace.lovable.app/sitemap.xml
+Sitemap: https://ojulogemakeppro.co.uk/sitemap.xml
