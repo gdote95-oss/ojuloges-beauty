@@ -111,3 +111,59 @@ header, #top, footer {
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
 }
+
+
+/* A more polished plum with quiet champagne accents. */
+:root {
+  --primary: oklch(0.28 0.055 332);
+  --luxe: oklch(0.245 0.04 332);
+  --hero-gradient: linear-gradient(125deg, oklch(0.235 0.04 330), oklch(0.32 0.055 340) 55%, oklch(0.255 0.04 330));
+}
+
+header, #top, footer {
+  --accent: oklch(0.88 0.07 72);
+  --accent-foreground: oklch(0.27 0.04 332);
+}
+
+/* Faint makeup-brush watermark, kept to the plum panel behind the copy. */
+#top::after {
+  content: "";
+  position: absolute;
+  inset: max(40vh, 320px) 0 0;
+  z-index: 1;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20520%20420%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23e7cfaa%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%22%3E%3Cpath%20d%3D%22M80%20350%20300%20140%22%20stroke-width%3D%2210%22%2F%3E%3Cpath%20d%3D%22M71%20359%2094%20336%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M285%20151%20311%20125%22%20stroke-width%3D%2217%22%2F%3E%3Cpath%20d%3D%22M291%20133c-8-44%2016-76%2048-101%2026%2031%2043%2068%2014%20103%22%20stroke-width%3D%228%22%2F%3E%3Cpath%20d%3D%22M170%20370%20354%20130%22%20stroke-width%3D%227%22%2F%3E%3Cpath%20d%3D%22M345%20141%20367%20113%22%20stroke-width%3D%2214%22%2F%3E%3Cpath%20d%3D%22M350%20123c-1-37%2021-66%2050-91%2020%2031%2030%2062%204%2091%22%20stroke-width%3D%227%22%2F%3E%3Cpath%20d%3D%22M255%20380%20398%20140%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M390%20151%20409%20122%22%20stroke-width%3D%2212%22%2F%3E%3Cpath%20d%3D%22M394%20133c5-32%2025-56%2049-77%2015%2027%2021%2053%200%2078%22%20stroke-width%3D%226%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat right 8% bottom 8% / min(72vw, 390px) auto;
+  opacity: 0.09;
+  mix-blend-mode: screen;
+}
+@media (min-width: 1024px) {
+  #top::after {
+    inset: 0 46% 0 0;
+    background-position: right 8% bottom 10%;
+    background-size: min(72%, 390px) auto;
+  }
+}
+
+/* Final palette overrides: keep the plum in dark mode, add champagne accents. */
+:root:not(.dark) {
+  --primary: oklch(0.28 0.055 332);
+  --luxe: oklch(0.245 0.04 332);
+}
+#top {
+  --hero-gradient: linear-gradient(125deg, oklch(0.235 0.04 330), oklch(0.32 0.055 340) 55%, oklch(0.255 0.04 330));
+}
+header, #top, footer {
+  --accent: oklch(0.88 0.07 72);
+  --accent-foreground: oklch(0.27 0.04 332);
+}
+#top::after {
+  background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20520%20420%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23e7cfaa%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M80%20350%20300%20140%22%20stroke-width%3D%2210%22%2F%3E%3Cpath%20d%3D%22M71%20359%2094%20336%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M285%20151%20311%20125%22%20stroke-width%3D%2217%22%2F%3E%3Cpath%20d%3D%22M291%20133c-8-44%2016-76%2048-101%2026%2031%2043%2068%2014%20103%22%20stroke-width%3D%228%22%2F%3E%3Cpath%20d%3D%22M170%20370%20354%20130%22%20stroke-width%3D%227%22%2F%3E%3Cpath%20d%3D%22M345%20141%20367%20113%22%20stroke-width%3D%2214%22%2F%3E%3Cpath%20d%3D%22M350%20123c-1-37%2021-66%2050-91%2020%2031%2030%2062%204%2091%22%20stroke-width%3D%227%22%2F%3E%3Cpath%20d%3D%22M255%20380%20398%20140%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M390%20151%20409%20122%22%20stroke-width%3D%2212%22%2F%3E%3Cpath%20d%3D%22M394%20133c5-32%2025-56%2049-77%2015%2027%2021%2053%200%2078%22%20stroke-width%3D%226%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat right 8% bottom 8% / min(72vw, 390px) auto;
+}
+@media (min-width: 1024px) {
+  #top::after { background-size: min(72%, 390px) auto; }
+}
+
+.dark {
+  --primary: oklch(0.29 0.065 340);
+  --luxe: oklch(0.245 0.045 340);
+}
